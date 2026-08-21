@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")   // ✅ إضافة kapt لمعالجة Room
+    id("org.jetbrains.kotlin.kapt")   // ✅ لمعالجة Room
 }
 
 android {
@@ -47,9 +47,11 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // Lifecycle + ViewModel
+    // Activity + Lifecycle (بما فيها المفقودة)
+    implementation("androidx.activity:activity-ktx:1.9.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")

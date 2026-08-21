@@ -17,26 +17,30 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
     private val viewModel: RssViewModel by viewModels {
         RssViewModelFactory((application as RssApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // إنشاء المحول مع رد فعل عند الضغط على خبر
         val newsAdapter = NewsAdapter(emptyList()) { item ->
-            // عند الضغط على الخبر – سيفتح المتصفح لاحقاً
+            // هنا سيتم فتح المتصفح لاحقًا
             Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
         }
 
+        // إعداد RecyclerView
         binding.recyclerViewNews.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = newsAdapter
         }
 
-        // مراقبة الأخبار
+        // مراقبة قائمة الأخبار
         lifecycleScope.launch {
             viewModel.newsList.collect { news ->
                 newsAdapter.updateList(news)
@@ -59,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.loadLatestNews()
     }
 
+    /**
+     * مصادر RSS الافتراضية (يمكن تعديلها لاحقًا)
+     */
     private fun defaultSources(): List<Pair<String, String>> {
         return listOf(
             "BBC علوم" to "http://www.bbc.co.uk/arabic/scienceandtech/index.xml",
