@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rssreader.data.model.NewsItem
 import com.example.rssreader.data.network.RssFetcher
-import androidx.lifecycle.ViewModelProvider
 import com.example.rssreader.data.repository.RssRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -73,16 +72,5 @@ class RssViewModel(private val repository: RssRepository) : ViewModel() {
             _isLoading.value = false
             loadLatestNews()
         }
-    }
-}
-class RssViewModelFactory(
-    private val repository: RssRepository
-) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(RssViewModel::class.java)) {
-            return RssViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
