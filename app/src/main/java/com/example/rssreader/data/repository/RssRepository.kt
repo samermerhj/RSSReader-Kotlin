@@ -4,6 +4,9 @@ import com.example.rssreader.data.dao.NewsDao
 import com.example.rssreader.data.dao.RssSourceDao
 import com.example.rssreader.data.model.NewsItem
 import com.example.rssreader.data.model.RssSource
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class RssRepository(
     private val newsDao: NewsDao,
@@ -26,7 +29,9 @@ class RssRepository(
     suspend fun getDistinctDates(): List<String> = newsDao.getDistinctDates()
 
     suspend fun deleteOldNews(days: Int) {
-        val cutoff = java.time.LocalDate.now().minusDays(days.toLong()).toString()
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -days)
+        val cutoff = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
         newsDao.deleteOldNews(cutoff)
     }
 }
