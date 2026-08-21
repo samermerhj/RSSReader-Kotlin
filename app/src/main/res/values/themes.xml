@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.RSSReader" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#2c3e50</item>
+        <item name="colorPrimaryDark">#1a252f</item>
+        <item name="colorAccent">#3498db</item>
+    </style>
+</resources>

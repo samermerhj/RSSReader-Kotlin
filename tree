@@ -1,0 +1,34 @@
+RSSReader-Kotlin/
+├── .github/
+│   └── workflows/
+│       └── build-android.yml
+│
+├── app/
+│   ├── build.gradle.kts
+│   ├── proguard-rules.pro
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml
+│           ├── java/com/example/rssreader/
+│           │   └── MainActivity.kt
+│           └── res/
+│               ├── layout/
+│               │   └── activity_main.xml
+│               ├── values/
+│               │   ├── strings.xml
+│               │   └── themes.xml
+│               └── mipmap-xxxhdpi/   (اختياري – أيقونات التطبيق)
+│                   └── ic_launcher.png
+│
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+│
+├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.properties
+│       └── gradle-wrapper.jar   ⚠️ ملف ثنائي – يُنشأ تلقائياً بالأمر أو عبر Android Studio
+│
+├── gradlew
+├── gradlew.bat
+└── .gitignore
